@@ -6,7 +6,7 @@ from photutils.detection import DAOStarFinder
 from astropy.stats import mad_std
 
 # Load image data
-image_file = 'MAST_2024-07-11T0203/JWST/jw02731-o001_t017_nircam_clear-f187n/jw02731-o001_t017_nircam_clear-f187n_i2d.fits'
+image_file = 'INPUT_FITS_FILE_DIRECTORY'
 hdu_list = fits.open(image_file)
 
 # Check the structure of the FITS file
@@ -33,6 +33,7 @@ print(f"Image data shape: {image_data.shape}")
 norm = simple_norm(image_data, 'linear', percent=99)
 # Plot detected stars
 plt.imshow(image_data, norm=norm, cmap='gray')
+plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')
 plt.xlim(0, 14340)
 plt.ylim(0, 8582)
 plt.title('Orignal image')
