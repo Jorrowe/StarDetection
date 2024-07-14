@@ -31,10 +31,11 @@ print(f"Image data shape: {image_data.shape}")
 
 # Normalize and display image
 norm = simple_norm(image_data, 'linear', percent=99)
+
 # Plot detected stars
 plt.imshow(image_data, norm=norm, cmap='gray')
 plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')
 plt.xlim(0, 14340)
 plt.ylim(0, 8582)
-plt.title('Orignal image')
+plt.title('Original image')
 plt.show()
