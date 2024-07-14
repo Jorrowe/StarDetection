@@ -6,7 +6,7 @@ from photutils.detection import DAOStarFinder
 from astropy.stats import mad_std
 
 # Load image data
-image_file = 'INPUT_FITS_FILE_DIRECTORY'
+image_file = 'INPUT_FITS_FILE'
 hdu_list = fits.open(image_file)
 
 # Check the structure of the FITS file
@@ -34,7 +34,7 @@ norm = simple_norm(image_data, 'linear', percent=99)
 
 # Plot detected stars
 plt.imshow(image_data, norm=norm, cmap='gray')
-plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')
+plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')jdr
 plt.xlim(0, 14340)
 plt.ylim(0, 8582)
 plt.title('Original image')
