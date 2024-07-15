@@ -4,9 +4,10 @@ from astropy.io import fits
 from astropy.visualization import simple_norm
 from photutils.detection import DAOStarFinder
 from astropy.stats import mad_std
+from photutils.aperture import CircularAperture
 
 # Load image data
-image_file = 'INPUT_FITS_FILE'
+image_file = "C:/Users/jdrow/Documents/StarDATA/jw02731-o001_t017_nircam_clear-f187n_i2d.fits"
 hdu_list = fits.open(image_file)
 
 # Check the structure of the FITS file
@@ -32,10 +33,14 @@ print(f"Image data shape: {image_data.shape}")
 # Normalize and display image
 norm = simple_norm(image_data, 'linear', percent=99)
 
+# Star detection
+bkg_sigma = mad_std(image_data)
+daofind = DAOStarFinder(fwhm=3.0, threshold=5.*bkg_sigma)
+sources = daofind(image_data)
+
 # Plot detected stars
+positions = (sources['xcentroid'], sources['ycentroid'])
 plt.imshow(image_data, norm=norm, cmap='gray')
-plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')jdr
-plt.xlim(0, 14340)
-plt.ylim(0, 8582)
-plt.title('Original image')
+plt.scatter(positions[0], positions[1], s=30, edgecolor='red', facecolor='none')
+plt.title('Detected Stars')
 plt.show()
