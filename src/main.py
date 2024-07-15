@@ -8,17 +8,17 @@ from photutils.aperture import CircularAperture
 
 # Load image data
 image_file = "C:/Users/jdrow/Documents/StarDATA/jw02731-o001_t017_nircam_clear-f187n_i2d.fits"
-hdu_list = fits.open(image_file)
+HDU_list = fits.open(image_file)
 
 # Check the structure of the FITS file
-print(f"Number of HDUs: {len(hdu_list)}")
-for i, hdu in enumerate(hdu_list):
+print(f"Number of HDUs: {len(HDU_list)}")
+for i, hdu in enumerate(HDU_list):
     print(f"HDU {i}: {hdu}")
 
 # Assuming the image data is in the primary HDU or first extension
-image_data = hdu_list[0].data
+image_data = HDU_list[0].data
 if image_data is None or image_data.ndim != 2:
-    image_data = hdu_list[1].data  # Try the first extension
+    image_data = HDU_list[1].data  # Try the first extension
 
 # Ensure the data is in a proper numeric format
 image_data = np.array(image_data, dtype=np.float64)
