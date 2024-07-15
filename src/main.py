@@ -7,7 +7,7 @@ from astropy.stats import mad_std
 from photutils.aperture import CircularAperture
 
 # Load image data
-image_file = "C:/Users/jdrow/Documents/StarDATA/jw02731-o001_t017_nircam_clear-f187n_i2d.fits"
+image_file = "INPUT_FITS_DIRECTORY"
 hdu_list = fits.open(image_file)
 
 # Check the structure of the FITS file
